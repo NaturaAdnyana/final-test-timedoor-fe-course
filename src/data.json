@@ -1,0 +1,74 @@
+{
+  "products": {
+    "-NhnpoR9ca5KYtfD9uJh": {
+      "category": "Dress",
+      "color": "Pink",
+      "description": "Smooth, comfortable dress with an elegant cut suitable for business wear.",
+      "image": "https://image.uniqlo.com/UQ/ST3/id/imagesgoods/462587/item/idgoods_11_462587.jpg?width=750",
+      "name": "AIRism Ultra Stretch Sleeveless Dress",
+      "price": "399000",
+      "shipping": "20000",
+      "size": "S"
+    },
+    "-NhnqXLUngTnnpMleFG8": {
+      "category": "T-Shirts (Short Sleeves)",
+      "color": "Purple",
+      "description": "Smooth 'AIRism' cotton-look fabric. The loose-fitting cut and slightly shorter length make this stand out.",
+      "image": "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/457939/sub/goods_457939_sub14.jpg?width=750",
+      "name": "AIRism Cotton Short Sleeve T-Shirt",
+      "price": "199000",
+      "shipping": "20000",
+      "size": "L"
+    },
+    "-NhrxKb8gy29BhfF9vIu": {
+      "category": "Jacket",
+      "color": "Black",
+      "description": "Lightweight, water-resistant jacket perfect for outdoor activities.",
+      "image": "https://image.uniqlo.com/UQ/ST3/id/imagesgoods/464918/item/idgoods_09_464918.jpg?width=750",
+      "name": "Pocketable UV Protection Parka",
+      "price": "499000",
+      "shipping": "25000",
+      "size": "M"
+    },
+    "-NhsywP3aTfGhZjL9uIo": {
+      "category": "Jeans",
+      "color": "Blue",
+      "description": "Slim fit stretch jeans with a comfortable, modern look.",
+      "image": "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/461701/item/goods_68_461701.jpg?width=750",
+      "name": "Ultra Stretch Skinny Fit Jeans",
+      "price": "599000",
+      "shipping": "30000",
+      "size": "32"
+    },
+    "-Nhtrg9fGTB2kRzL9eK0": {
+      "category": "Bag",
+      "color": "Navy",
+      "description": "Lightweight and durable shoulder bag with multiple compartments.",
+      "image": "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/472049/item/goods_68_472049.jpg?width=750",
+      "name": "Mini Shoulder Bag",
+      "price": "199000",
+      "shipping": "15000",
+      "size": "One Size"
+    },
+    "-NhtvjMkTyXaBeUj9mP2": {
+      "category": "Hat",
+      "color": "Beige",
+      "description": "Breathable cap with UV protection, ideal for sunny days.",
+      "image": "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/451498/item/goods_31_451498.jpg?width=750",
+      "name": "UV Protection Cap",
+      "price": "129000",
+      "shipping": "10000",
+      "size": "One Size"
+    },
+    "-NhuwP3kRTjXkUjT9yM7": {
+      "category": "Sweater",
+      "color": "Gray",
+      "description": "Soft cotton sweater with a relaxed fit, suitable for cool weather.",
+      "image": "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/453754/sub/goods_453754_sub14.jpg?width=750",
+      "name": "Cotton Relax Fit Sweater",
+      "price": "399000",
+      "shipping": "20000",
+      "size": "M"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import './base.css';
+
+main {
+  min-height: 100vh;
+}
+
+.bg-glass {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    ),
+    url('https://images.unsplash.com/photo-1520006403909-838d6b92c22e');
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.btn-heart {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.see-products {
+  background: #dfffd5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+a,
+a span {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+footer ul {
+  padding: 0;
+}
+
+footer ul li {
+  list-style: none;
+}
+
+footer i {
+  margin-right: 10px;
+}
+
+.custom-dropdown-menu {
+  min-width: 20px;
+}
+
+.img-gallery {
+  height: 70vh;
+}
+
+.img-box {
+  padding: 4px;
+}
+
+.img-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* .img-gallery * {
+  border: solid 1px black;
+} */
+
+.col-h-50 {
+  height: 50%;
+}
+
+.col-h-100 {
+  height: 100%;
+}
