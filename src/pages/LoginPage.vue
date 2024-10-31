@@ -7,11 +7,21 @@
           <p class="mb-4">Enter your details below</p>
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" />
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              v-model="loginData.email"
+            />
           </div>
           <div class="mb-4">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" />
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              v-model="loginData.password"
+            />
           </div>
           <div>
             <button class="btn w-100 btn-success" type="submit">

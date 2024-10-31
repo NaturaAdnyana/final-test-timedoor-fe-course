@@ -1,5 +1,9 @@
 <template>
-  <div class="card position-relative me-2" style="width: 18rem">
+  <router-link
+    :to="`/product/${product.id}`"
+    class="card position-relative me-2"
+    style="width: 18rem"
+  >
     <img :src="product.image" class="card-img-top" :alt="product.name" />
     <div class="card-body">
       <h5 class="card-title">
@@ -15,7 +19,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script setup>

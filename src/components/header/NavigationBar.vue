@@ -25,18 +25,11 @@
             aria-label="Search"
           />
         </form>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item me-2">
-            <router-link class="btn btn-outline-success me-2 px-4" to="/login"
-              >Login</router-link
-            >
-          </li>
-          <li class="nav-item me-2">
-            <router-link class="btn btn-success me-2 px-4" to="/register"
-              >Signup</router-link
-            >
-          </li>
-          <li class="nav-item dropdown border-start ps-1">
+        <ul class="navbar-nav me-auto">
+          <component :is="components[menuComponent]"></component>
+          <li
+            class="nav-item dropdown border-start ps-1 d-flex align-items-center"
+          >
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -60,3 +53,37 @@
     </div>
   </nav>
 </template>
+
+<script setup>
+import AuthMenu from './AuthMenu.vue'
+import ProfileMenu from './ProfileMenu.vue'
+
+import { computed, ref, watch } from 'vue'
+import { useStore } from 'vuex'
+
+const menuComponent = ref('signup-menu')
+const store = useStore()
+
+const components = {
+  'auth-menu': AuthMenu,
+  'profile-menu': ProfileMenu,
+}
+
+const getToken = computed(() => {
+  return store.state.auth.token
+})
+
+if (!getToken.value) {
+  menuComponent.value = 'auth-menu'
+} else {
+  menuComponent.value = 'profile-menu'
+}
+
+watch(getToken, newValue => {
+  if (!newValue) {
+    menuComponent.value = 'auth-menu'
+  } else {
+    menuComponent.value = 'profile-menu'
+  }
+})
+</script>

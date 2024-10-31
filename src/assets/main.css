@@ -1,5 +1,9 @@
 @import './base.css';
 
+.navbar {
+  box-shadow: 0px 0px 10px rgba(146, 146, 146, 0.5);
+}
+
 main {
   min-height: 100vh;
 }
