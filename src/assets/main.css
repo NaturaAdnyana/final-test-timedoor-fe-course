@@ -32,12 +32,17 @@ main {
   background: none;
   padding: 0;
 }
-
 .see-products {
+  height: 100%;
   background: #dfffd5;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.see-products:hover {
+  background: #f0ffec;
+  transition: 0.2s;
 }
 a,
 a span {

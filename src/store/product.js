@@ -38,34 +38,36 @@ export default {
       }
     },
 
-    // async getRecipeDetail({ commit }, payload) {
-    //   try {
-    //     const { data } = await axios.get(
-    //       `https://vue-js-project-6b699-default-rtdb.firebaseio.com/recipes/${payload}.json`,
-    //     )
-    //     commit('setRecipeDetail', data)
-    //   } catch (err) {}
-    // },
+    async getProductDetail({ commit }, payload) {
+      try {
+        const { data } = await axios.get(
+          `https://vintage-store-natura-default-rtdb.asia-southeast1.firebasedatabase.app/products/${payload}.json`,
+        )
+        commit('setProductDetail', data)
+      } catch (err) {
+        console.error(err)
+      }
+    },
 
-    // async addNewRecipe({ commit, rootState }, payload) {
-    //   const newData = {
-    //     ...payload,
-    //     username: rootState.auth.userLogin.username,
-    //     createdAt: Date.now(),
-    //     likes: ['null'],
-    //     userId: rootState.auth.userLogin.userId,
-    //   }
-    //   try {
-    //     const { data } = await axios.post(
-    //       `https://vue-js-project-6b699-default-rtdb.firebaseio.com/recipes.json?auth=${rootState.auth.token}`,
-    //       newData,
-    //     )
+    async addNewRecipe({ commit, rootState }, payload) {
+      const newData = {
+        ...payload,
+        username: rootState.auth.userLogin.username,
+        createdAt: Date.now(),
+        likes: ['null'],
+        userId: rootState.auth.userLogin.userId,
+      }
+      try {
+        const { data } = await axios.post(
+          `https://vue-js-project-6b699-default-rtdb.firebaseio.com/recipes.json?auth=${rootState.auth.token}`,
+          newData,
+        )
 
-    //     commit('setNewRecipe', { id: data.name, ...newData })
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // },
+        commit('setNewRecipe', { id: data.name, ...newData })
+      } catch (err) {
+        console.log(err)
+      }
+    },
 
     // async deleteRecipe({ dispatch, rootState }, payload) {
     //   try {

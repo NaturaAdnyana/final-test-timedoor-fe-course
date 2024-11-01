@@ -1,7 +1,7 @@
 <template>
   <web-header></web-header>
   <main>
-    <RouterView />
+    <RouterView :key="$route.fullPath" />
   </main>
   <web-footer></web-footer>
 </template>

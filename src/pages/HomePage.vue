@@ -5,19 +5,19 @@
       <h2>Popular Items</h2>
       <a href="products.html" class="">See all</a>
     </div>
-    <div class="d-flex py-3 justify-content-start">
+    <div class="row row-cols-5 g-2 py-3 justify-content-start">
       <product-card
         v-for="product in mostPopularProductList"
         :key="product.id"
         :product="product"
       ></product-card>
-      <a
-        href="products.html"
-        class="card position-relative see-products"
-        style="width: 18rem"
-      >
-        <span>See All Products</span>
-      </a>
+      <div>
+        <router-link
+          class="card see-products position-relative text-success"
+          to="/products/"
+          >See All Products
+        </router-link>
+      </div>
     </div>
   </section>
   <section class="container py-5">
@@ -53,19 +53,19 @@
       <h2>New Product</h2>
       <a href="products.html" class="">See all</a>
     </div>
-    <div class="d-flex py-3 justify-content-start">
+    <div class="row row-cols-5 g-2 py-3 justify-content-start">
       <product-card
         v-for="product in newProductList"
         :key="product.id"
         :product="product"
       ></product-card>
-      <a
-        href="products.html"
-        class="card position-relative see-products"
-        style="width: 18rem"
-      >
-        <span>See All Products</span>
-      </a>
+      <div>
+        <router-link
+          class="card see-products position-relative text-success"
+          to="/products/"
+          >See All Products
+        </router-link>
+      </div>
     </div>
   </section>
 </template>
