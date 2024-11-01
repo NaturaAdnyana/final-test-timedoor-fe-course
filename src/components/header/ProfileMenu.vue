@@ -14,10 +14,13 @@
     style="text-align: right"
   >
     <img
-      class="rounded-circle w-50 h-100"
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkdqJslofS3py9Q3E3oJv8zBQ8ENi2FlcSIg&s"
+      style="width: 40px; height: 40px; object-fit: cover"
+      class="rounded-circle"
+      :src="
+        userData.imageLink ||
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjxTOc1Z5yT4gzy6apVD7dFJXL-nHVcYA3xg&s'
+      "
       alt="Profile Picture"
-      style="object-fit: cover"
     />
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
@@ -30,14 +33,22 @@
         </a>
         <ul class="dropdown-menu">
           <router-link to="/user/personal-info" class="dropdown-item"
-            ><i class="fa-regular fa-user me-3"></i>My Profile</router-link
+            ><i class="fa-solid fa-user me-3"></i>My Profile</router-link
           >
-          <router-link to="/user/user-recipe" class="dropdown-item"
-            ><i class="fa-regular fa-rectangle-list me-3"></i>My
+          <router-link to="/user/history" class="dropdown-item"
+            ><i class="fa-solid fa-clock-rotate-left me-3"></i>My
             Order</router-link
           >
+          <router-link to="/user/change-password" class="dropdown-item"
+            ><i class="fa-solid fa-user-lock me-3"></i>Change
+            Password</router-link
+          >
           <li><hr class="dropdown-divider" /></li>
-          <li class="dropdown-item" @click="logout">
+          <router-link to="/user/my-products" class="dropdown-item"
+            ><i class="fa-solid fa-tag me-3"></i>My Products</router-link
+          >
+          <li><hr class="dropdown-divider" /></li>
+          <li class="dropdown-item pointer" @click="logout">
             <i class="fa-solid fa-arrow-right-from-bracket me-3"></i>Logout
           </li>
         </ul>
@@ -47,6 +58,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -57,4 +69,8 @@ const logout = () => {
   store.commit('auth/setUserLogout')
   router.push('/')
 }
+
+const userData = computed(() => {
+  return store.state.auth.userLogin
+})
 </script>

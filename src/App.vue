@@ -3,6 +3,7 @@
   <main>
     <RouterView :key="$route.fullPath" />
   </main>
+
   <web-footer></web-footer>
 </template>
 

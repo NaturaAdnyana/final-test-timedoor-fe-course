@@ -4,6 +4,10 @@ import LoginPage from '../pages/LoginPage.vue'
 import RegisterPage from '@/pages/RegisterPage.vue'
 import ProductPage from '@/pages/ProductPage.vue'
 import AllProductsPage from '@/pages/AllProductsPage.vue'
+import UserPage from '@/pages/UserPage.vue'
+
+import Cookies from 'js-cookie'
+import { store } from '@/store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +37,14 @@ const router = createRouter({
       name: 'products',
       component: AllProductsPage,
     },
+    {
+      path: '/user/:component',
+      name: 'userPage',
+      component: UserPage,
+      beforeEnter: (to, from, next) => {
+        checkAuth() ? next() : next({ name: 'login' })
+      },
+    },
     // {
     //   path: '/about',
     //   name: 'about',
@@ -46,5 +58,27 @@ const router = createRouter({
     return { top: 0 }
   },
 })
+
+const checkAuth = () => {
+  const jwtCookie = Cookies.get('jwt')
+  const expirationDate = Cookies.get('tokenExpirationDate')
+  const userId = Cookies.get('UID')
+
+  if (jwtCookie) {
+    if (new Date().getTime() < +expirationDate) {
+      store.commit('auth/setToken', {
+        idToken: jwtCookie,
+        expiresIn: expirationDate,
+      })
+      store.dispatch('auth/getUser', userId)
+      return true
+    } else {
+      store.commit('auth/setUserLogout')
+      return false
+    }
+  } else {
+    return false
+  }
+}
 
 export default router

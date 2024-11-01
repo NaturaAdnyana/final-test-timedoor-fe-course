@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 :root {
   --primary: #38971b;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 * {
   font-family: 'Urbanist', sans-serif;
 }

@@ -37,14 +37,16 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              EN
+              🇬🇧 EN
             </a>
             <ul class="dropdown-menu custom-dropdown-menu">
-              <li><a class="dropdown-item" href="#">ID</a></li>
-              <li><a class="dropdown-item" href="#">JP</a></li>
+              <li><a class="dropdown-item" href="#">🇮🇩 ID</a></li>
+              <li><a class="dropdown-item" href="#">🇯🇵 JP</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">⚙️ Coming Soon</a></li>
               <li><hr class="dropdown-divider" /></li>
               <li>
-                <a class="dropdown-item" href="#">Except Israel</a>
+                <a class="dropdown-item" href="#">🏴‍☠️ Except Israel</a>
               </li>
             </ul>
           </li>
@@ -61,7 +63,7 @@ import ProfileMenu from './ProfileMenu.vue'
 import { computed, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 
-const menuComponent = ref('signup-menu')
+const menuComponent = ref('auth-menu')
 const store = useStore()
 
 const components = {
