@@ -30,11 +30,14 @@
       </li>
       <li
         class="list-group-item user-menu"
-        @click="menuClicked('favorite-recipes')"
+        @click="menuClicked('change-password')"
       >
         <i class="fa-solid fa-user-lock pe-2"></i>Change Password
       </li>
-      <li class="list-group-item user-menu" @click="menuClicked('user-recipe')">
+      <li
+        class="list-group-item user-menu"
+        @click="menuClicked('transaction-history')"
+      >
         <i class="fa-solid fa-clock-rotate-left pe-2"></i>Transaction History
       </li>
     </ul>
@@ -42,11 +45,11 @@
       <li class="list-group-item">
         <p class="my-0 fs-5 fw-semibold">My Shop</p>
       </li>
-      <li
-        class="list-group-item user-menu"
-        @click="menuClicked('personal-info')"
-      >
+      <li class="list-group-item user-menu" @click="menuClicked('my-products')">
         <i class="fa-solid fa-tag pe-2"></i>My Products
+      </li>
+      <li class="list-group-item user-menu" @click="menuClicked('order-list')">
+        <i class="fa-solid fa-comment-dollar pe-2"></i>Order List
       </li>
     </ul>
   </div>

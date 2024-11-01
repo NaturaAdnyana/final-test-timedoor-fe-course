@@ -12,9 +12,11 @@
 <script setup>
 import UserMenu from '@/components/user/UserMenu.vue'
 
-// import FavoriteRecipe from '../user/FavoriteRecipe.vue'
 import PersonalInfo from '@/components/user/PersonalInfo.vue'
-// import UserRecipe from '../user/UserRecipe.vue'
+import ChangePassword from '@/components/user/ChangePassword.vue'
+import TransactionHistory from '@/components/user/TransactionHistory.vue'
+import MyProducts from '@/components/user/MyProducts.vue'
+import OrderList from '@/components/user/OrderList.vue'
 
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
@@ -23,8 +25,10 @@ const route = useRoute()
 
 const component = {
   'personal-info': PersonalInfo,
-  // 'favorite-recipes': FavoriteRecipe,
-  // 'user-recipe': UserRecipe,
+  'change-password': ChangePassword,
+  'transaction-history': TransactionHistory,
+  'my-products': MyProducts,
+  'order-list': OrderList,
 }
 
 const getRoute = computed(() => {
