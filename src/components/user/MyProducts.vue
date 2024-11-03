@@ -8,13 +8,14 @@
           <router-link
             to="/user/my-products/add"
             class="d-flex justify-content-center align-items-center h-100 card product-card"
+            style="min-height: 351px"
           >
             <span class="mb-3">Add Product</span>
             <i class="fa-solid fa-plus text-success"></i>
           </router-link>
         </div>
         <product-card
-          v-for="product in productList"
+          v-for="product in products"
           :key="product.id"
           :product="product"
           is-admin="true"
@@ -27,20 +28,14 @@
 <script setup>
 import ProductCard from '@/components/ui/ProductCard.vue'
 
-import { onMounted, ref } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
-const productListStatus = ref(false)
-const productList = ref()
 
-onMounted(async () => {
-  try {
-    await store.dispatch('product/getProductData')
-    productListStatus.value = true
-    productList.value = store.state.product.products
-  } catch (error) {
-    console.error('Error fetching product data:', error)
-  }
+const products = computed(() => {
+  const allProducts = store.state.product.products
+  const userId = store.state.auth.userLogin.userId
+  return allProducts.filter(product => product.userId === userId)
 })
 </script>

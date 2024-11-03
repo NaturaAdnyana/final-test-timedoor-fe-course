@@ -16,7 +16,14 @@
           <small class="text-body-secondary"
             >{{ product.color }} / {{ product.size }}</small
           >
-          <button class="btn-heart" v-show="!isAdmin">
+          <button
+            class="btn btn-heart rounded-circle"
+            v-if="isAdmin"
+            @click.stop="event => handleDelete(event, product.id)"
+          >
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+          <button class="btn btn-heart rounded-circle" v-else>
             <i class="fa-regular fa-heart"></i>
           </button>
         </div>
@@ -30,4 +37,22 @@ defineProps({
   product: { type: Object, require: true },
   isAdmin: { type: Boolean, default: false },
 })
+
+import { useStore } from 'vuex'
+const store = useStore()
+
+const handleDelete = async (event, id) => {
+  event.preventDefault()
+  event.stopPropagation()
+  const confirmDelete = confirm('Are you sure want to delete this product?')
+  if (confirmDelete) {
+    try {
+      await store.dispatch('product/deleteProduct', id)
+    } catch (err) {
+      console.log(err)
+    }
+  } else {
+    console.log('delete not run')
+  }
+}
 </script>

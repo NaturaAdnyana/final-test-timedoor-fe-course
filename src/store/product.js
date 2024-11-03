@@ -49,7 +49,7 @@ export default {
       }
     },
 
-    async addNewProduct({ commit, rootState }, payload) {
+    async addNewProduct({ commit, rootState, dispatch }, payload) {
       const newData = {
         ...payload,
         username: rootState.auth.userLogin.username,
@@ -64,6 +64,7 @@ export default {
         )
 
         commit('setNewProduct', { id: data.name, ...newData })
+        await dispatch('getProductData')
       } catch (err) {
         console.log(err)
       }
@@ -81,15 +82,15 @@ export default {
       }
     },
 
-    // async deleteProduct({ dispatch, rootState }, payload) {
-    //   try {
-    //     const { data } = await axios.delete(
-    //       `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/products/${payload}.json?auth=${rootState.auth.token}`,
-    //     )
-    //     await dispatch('getProductData')
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // },
+    async deleteProduct({ dispatch, rootState }, payload) {
+      try {
+        await axios.delete(
+          `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/products/${payload}.json?auth=${rootState.auth.token}`,
+        )
+        await dispatch('getProductData')
+      } catch (err) {
+        console.log(err)
+      }
+    },
   },
 }
