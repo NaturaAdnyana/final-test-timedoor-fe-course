@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar navbar-expand-lg fixed-top bg-glass">
     <div class="container-md px-5">
-      <img src="@/assets/logo.png" width="50px" class="pe-2" />
-      <router-link class="navbar-brand fw-bold text-success" to="/"
-        >Vintage</router-link
-      >
+      <router-link class="navbar-brand fw-bold text-success" to="/">
+        <img src="@/assets/logo.png" width="50px" class="pe-2" />
+        Vintage
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"

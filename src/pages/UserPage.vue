@@ -17,6 +17,7 @@ import ChangePassword from '@/components/user/ChangePassword.vue'
 import TransactionHistory from '@/components/user/TransactionHistory.vue'
 import MyProducts from '@/components/user/MyProducts.vue'
 import OrderList from '@/components/user/OrderList.vue'
+import ModifyProduct from '@/components/user/EditProduct.vue'
 
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
@@ -29,6 +30,7 @@ const component = {
   'transaction-history': TransactionHistory,
   'my-products': MyProducts,
   'order-list': OrderList,
+  'modify-product': ModifyProduct,
 }
 
 const getRoute = computed(() => {

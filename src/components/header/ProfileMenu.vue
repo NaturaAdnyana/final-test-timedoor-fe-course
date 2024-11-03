@@ -35,7 +35,7 @@
           <router-link to="/user/personal-info" class="dropdown-item"
             ><i class="fa-solid fa-user me-3"></i>My Profile</router-link
           >
-          <router-link to="/user/history" class="dropdown-item"
+          <router-link to="/user/transaction-history" class="dropdown-item"
             ><i class="fa-solid fa-clock-rotate-left me-3"></i>My
             Order</router-link
           >

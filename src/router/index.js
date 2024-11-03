@@ -5,6 +5,8 @@ import RegisterPage from '@/pages/RegisterPage.vue'
 import ProductPage from '@/pages/ProductPage.vue'
 import AllProductsPage from '@/pages/AllProductsPage.vue'
 import UserPage from '@/pages/UserPage.vue'
+import EditProduct from '@/components/user/EditProduct.vue'
+import AddProduct from '@/components/user/AddProduct.vue'
 
 import Cookies from 'js-cookie'
 import { store } from '@/store'
@@ -41,6 +43,22 @@ const router = createRouter({
       path: '/user/:component',
       name: 'userPage',
       component: UserPage,
+      beforeEnter: (to, from, next) => {
+        checkAuth() ? next() : next({ name: 'login' })
+      },
+    },
+    {
+      path: '/user/my-products/add',
+      name: 'addProduct',
+      component: AddProduct,
+      beforeEnter: (to, from, next) => {
+        checkAuth() ? next() : next({ name: 'login' })
+      },
+    },
+    {
+      path: '/user/my-products/:id',
+      name: 'editMyProduct',
+      component: EditProduct,
       beforeEnter: (to, from, next) => {
         checkAuth() ? next() : next({ name: 'login' })
       },

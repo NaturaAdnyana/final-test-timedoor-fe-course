@@ -154,6 +154,7 @@ const productDetail = computed(() => {
 const productListStatus = ref(false)
 const newProductList = ref()
 
+// For Recomendation List
 onMounted(async () => {
   try {
     await store.dispatch('product/getProductData')

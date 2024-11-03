@@ -1,7 +1,9 @@
 <template>
   <div>
     <router-link
-      :to="`/product/${product.id}`"
+      :to="
+        isAdmin ? `/user/my-products/${product.id}` : `/product/${product.id}`
+      "
       class="card position-relative h-100"
     >
       <img :src="product.image" class="card-img-top" :alt="product.name" />
@@ -14,7 +16,7 @@
           <small class="text-body-secondary"
             >{{ product.color }} / {{ product.size }}</small
           >
-          <button class="btn-heart">
+          <button class="btn-heart" v-show="!isAdmin">
             <i class="fa-regular fa-heart"></i>
           </button>
         </div>
@@ -26,5 +28,6 @@
 <script setup>
 defineProps({
   product: { type: Object, require: true },
+  isAdmin: { type: Boolean, default: false },
 })
 </script>

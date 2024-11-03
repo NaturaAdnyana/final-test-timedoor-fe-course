@@ -13,7 +13,7 @@
       ></product-card>
       <div>
         <router-link
-          class="card see-products position-relative text-success"
+          class="card product-card position-relative text-success"
           to="/products/"
           >See All Products
         </router-link>
@@ -61,7 +61,7 @@
       ></product-card>
       <div>
         <router-link
-          class="card see-products position-relative text-success"
+          class="card product-card position-relative text-success"
           to="/products/"
           >See All Products
         </router-link>

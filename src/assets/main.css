@@ -32,7 +32,7 @@ main {
   background: none;
   padding: 0;
 }
-.see-products {
+.product-card {
   height: 100%;
   background: #dfffd5;
   display: flex;
@@ -40,7 +40,7 @@ main {
   align-items: center;
 }
 
-.see-products:hover {
+.product-card:hover {
   background: #f0ffec;
   transition: 0.2s;
 }

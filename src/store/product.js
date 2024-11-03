@@ -24,7 +24,7 @@ export default {
     async getProductData({ commit }) {
       try {
         const { data } = await axios.get(
-          'https://vintage-store-natura-default-rtdb.asia-southeast1.firebasedatabase.app/products.json',
+          `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/products.json`,
         )
 
         const arr = []
@@ -41,7 +41,7 @@ export default {
     async getProductDetail({ commit }, payload) {
       try {
         const { data } = await axios.get(
-          `https://vintage-store-natura-default-rtdb.asia-southeast1.firebasedatabase.app/products/${payload}.json`,
+          `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/products/${payload}.json`,
         )
         commit('setProductDetail', data)
       } catch (err) {
@@ -49,44 +49,44 @@ export default {
       }
     },
 
-    async addNewRecipe({ commit, rootState }, payload) {
+    async addNewProduct({ commit, rootState }, payload) {
       const newData = {
         ...payload,
         username: rootState.auth.userLogin.username,
         createdAt: Date.now(),
-        likes: ['null'],
+        likes: [],
         userId: rootState.auth.userLogin.userId,
       }
       try {
         const { data } = await axios.post(
-          `https://vue-js-project-6b699-default-rtdb.firebaseio.com/recipes.json?auth=${rootState.auth.token}`,
+          `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/products.json?auth=${rootState.auth.token}`,
           newData,
         )
 
-        commit('setNewRecipe', { id: data.name, ...newData })
+        commit('setNewProduct', { id: data.name, ...newData })
       } catch (err) {
         console.log(err)
       }
     },
 
-    // async deleteRecipe({ dispatch, rootState }, payload) {
+    async updateProduct({ dispatch, rootState }, { id, newProduct }) {
+      try {
+        await axios.put(
+          `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/products/${id}.json?auth=${rootState.auth.token}`,
+          newProduct,
+        )
+        await dispatch('getProductData')
+      } catch (err) {
+        console.log(err)
+      }
+    },
+
+    // async deleteProduct({ dispatch, rootState }, payload) {
     //   try {
     //     const { data } = await axios.delete(
-    //       `https://vue-js-project-6b699-default-rtdb.firebaseio.com/recipes/${payload}.json?auth=${rootState.auth.token}`,
+    //       `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/products/${payload}.json?auth=${rootState.auth.token}`,
     //     )
-    //     await dispatch('getRecipeData')
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // },
-
-    // async updateRecipe({ dispatch, rootState }, { id, newRecipe }) {
-    //   try {
-    //     const { data } = await axios.put(
-    //       `https://vue-js-project-6b699-default-rtdb.firebaseio.com/recipes/${id}.json?auth=${rootState.auth.token}`,
-    //       newRecipe,
-    //     )
-    //     await dispatch('getRecipeData')
+    //     await dispatch('getProductData')
     //   } catch (err) {
     //     console.log(err)
     //   }
