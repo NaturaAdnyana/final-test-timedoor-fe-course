@@ -111,7 +111,11 @@
         <button type="button" class="btn btn-success w-100 mb-2">
           Buy Now
         </button>
-        <button type="button" class="btn btn-outline-success w-100">
+        <button
+          type="button"
+          class="btn btn-outline-success w-100"
+          @click="addToCartHandler"
+        >
           Add to Cart
         </button>
       </div>
@@ -166,4 +170,18 @@ onMounted(async () => {
     console.error('Error fetching product data:', error)
   }
 })
+
+const addToCartHandler = async () => {
+  try {
+    await store.dispatch('cart/addProductToCart', {
+      image: productDetail.value.image,
+      name: productDetail.value.name,
+      price: productDetail.value.price,
+      size: productDetail.value.size,
+      color: productDetail.value.color,
+    })
+  } catch (error) {
+    console.error('Error fetching product data:', error)
+  }
+}
 </script>

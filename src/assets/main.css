@@ -96,3 +96,7 @@ footer i {
 .pointer {
   cursor: pointer;
 }
+
+.text-badge-xxs {
+  font-size: 8px;
+}

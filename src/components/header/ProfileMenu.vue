@@ -1,12 +1,18 @@
 <template>
   <li class="nav-item dropdown ps-1 d-flex align-items-center me-4">
-    <router-link to="/cart">
-      <i class="fa-regular fa-rectangle-list fa-lg text-dark"></i>
+    <router-link to="/cart" class="rounded-circle position-relative">
+      <span
+        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-badge-xxs"
+      >
+        {{ store.state.cart.cart.length }}
+        <span class="visually-hidden">unread messages</span>
+      </span>
+      <i class="fa-solid fa-cart-shopping text-black-50"></i>
     </router-link>
   </li>
   <li class="nav-item dropdown ps-1 d-flex align-items-center me-4">
-    <router-link to="/favorites">
-      <i class="fa-regular fa-heart fa-lg text-dark"></i>
+    <router-link to="/favorites" class="rounded-circle">
+      <i class="fa-solid fa-heart text-black-50"></i>
     </router-link>
   </li>
   <li
@@ -58,7 +64,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -72,5 +78,9 @@ const logout = () => {
 
 const userData = computed(() => {
   return store.state.auth.userLogin
+})
+
+onMounted(async () => {
+  await store.dispatch('cart/getCartData')
 })
 </script>
