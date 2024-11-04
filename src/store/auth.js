@@ -91,6 +91,7 @@ export default {
             new Date().getTime() + Number.parseInt(data.expiresIn) * 1000,
         })
         await dispatch('getUser', data.localId)
+        await dispatch('cart/getCartData', null, { root: true })
       } catch (err) {
         console.log(err)
       }
