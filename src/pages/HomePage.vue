@@ -15,7 +15,9 @@
         <router-link
           class="card product-card position-relative text-success"
           to="/products/"
-          >See All Products
+        >
+          <span>See All Products</span>
+          <i class="fa-solid fa-eye mt-2"></i>
         </router-link>
       </div>
     </div>
@@ -63,7 +65,8 @@
         <router-link
           class="card product-card position-relative text-success"
           to="/products/"
-          >See All Products
+          ><span>See All Products</span>
+          <i class="fa-solid fa-eye mt-2"></i>
         </router-link>
       </div>
     </div>
