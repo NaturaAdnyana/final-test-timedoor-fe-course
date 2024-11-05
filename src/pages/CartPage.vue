@@ -172,18 +172,21 @@ const deleteProductFromCartHandler = async id => {
 }
 
 const updateQuantity = async (productId, newQuantity) => {
-  if (newQuantity < 1) return
-  quantityLoading.value = true
-  try {
-    await store.dispatch('cart/updateProductQuantity', {
-      productId,
-      quantity: newQuantity,
-    })
-  } catch (err) {
-    console.log(err)
-  } finally {
-    quantityLoading.value = false
-    getCartDataFromStore()
+  if (newQuantity < 1) {
+    deleteProductFromCartHandler(productId)
+  } else {
+    quantityLoading.value = true
+    try {
+      await store.dispatch('cart/updateProductQuantity', {
+        productId,
+        quantity: newQuantity,
+      })
+    } catch (err) {
+      console.log(err)
+    } finally {
+      quantityLoading.value = false
+      getCartDataFromStore()
+    }
   }
 }
 </script>
