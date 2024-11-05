@@ -113,12 +113,14 @@
             </p>
           </li>
           <li class="list-group-item py-3">
-            <button
+            <router-link
+              to="/order/"
               class="btn btn-success w-100"
               :disabled="cartData.length === 0"
+              @click="checkoutHandler"
             >
               Checkout
-            </button>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -187,6 +189,14 @@ const updateQuantity = async (productId, newQuantity) => {
       quantityLoading.value = false
       getCartDataFromStore()
     }
+  }
+}
+
+const checkoutHandler = async () => {
+  try {
+    await store.dispatch('order/addProductToOrder', cartData.value)
+  } catch (err) {
+    console.log(err)
   }
 }
 </script>
