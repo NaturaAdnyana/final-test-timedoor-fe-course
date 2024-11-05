@@ -25,7 +25,10 @@
                     :alt="cart.name"
                   />
                 </div>
-                <div class="col-md-8 d-flex flex-column justify-content-center">
+                <router-link
+                  :to="`/product/${cart.id}`"
+                  class="col-md-8 d-flex flex-column justify-content-center text-dark"
+                >
                   <div
                     class="card-body d-flex flex-column justify-content-center"
                   >
@@ -39,7 +42,7 @@
                       Rp. {{ Number(cart.price).toLocaleString() }}
                     </p>
                   </div>
-                </div>
+                </router-link>
                 <div
                   class="card-footer bg-transparent d-flex justify-content-between"
                 >
@@ -82,7 +85,7 @@
         </ul>
       </div>
       <div class="col-lg-3">
-        <ul class="list-group">
+        <ul class="list-group position-sticky" style="top: 100px">
           <li class="list-group-item pt-4">
             <h2 class="d-flex justify-content-between mb-2 fs-6">
               <b>Order Summary</b>

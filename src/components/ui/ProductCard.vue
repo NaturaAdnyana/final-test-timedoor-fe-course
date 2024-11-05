@@ -6,7 +6,14 @@
       "
       class="card position-relative h-100"
     >
-      <img :src="product.image" class="card-img-top" :alt="product.name" />
+      <img
+        :src="
+          product.image ||
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlJfnLgDiGKYaxVQApYVsxChexmtMbI42TYw&s'
+        "
+        class="card-img-top"
+        :alt="product.name"
+      />
       <div class="card-body">
         <h5 class="card-title">
           Rp. {{ Number(product.price).toLocaleString() }}

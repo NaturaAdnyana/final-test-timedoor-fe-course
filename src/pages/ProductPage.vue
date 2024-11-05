@@ -3,7 +3,13 @@
     <div class="row justify-content-around img-gallery">
       <div class="col-8 row gx-0">
         <div class="col-6 img-box">
-          <img :src="productDetail.image" alt="" />
+          <img
+            :src="
+              productDetail.image ||
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlJfnLgDiGKYaxVQApYVsxChexmtMbI42TYw&s'
+            "
+            alt=""
+          />
         </div>
         <div class="col-6 row row-cols-2 gx-0">
           <div class="col col-h-50 img-box">
@@ -174,6 +180,7 @@ onMounted(async () => {
 const addToCartHandler = async () => {
   try {
     await store.dispatch('cart/addProductToCart', {
+      productId: route.params.id,
       image: productDetail.value.image,
       name: productDetail.value.name,
       price: productDetail.value.price,

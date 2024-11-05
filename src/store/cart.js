@@ -26,7 +26,7 @@ export default {
         }
 
         const userCart = arr.filter(
-          item => item.userId === rootState.auth.userLogin.userId,
+          item => item.buyerUserId === rootState.auth.userLogin.userId,
         )
 
         commit('setProductToCart', userCart)
@@ -38,11 +38,10 @@ export default {
     async addProductToCart({ commit, rootState, dispatch }, payload) {
       const newData = {
         ...payload,
-        username: rootState.auth.userLogin.username,
+        buyerUsername: rootState.auth.userLogin.username,
         createdAt: Date.now(),
-        userId: rootState.auth.userLogin.userId,
+        buyerUserId: rootState.auth.userLogin.userId,
       }
-      console.log(newData)
       try {
         const { data } = await axios.post(
           `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/carts.json?auth=${rootState.auth.token}`,
