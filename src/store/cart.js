@@ -12,6 +12,12 @@ export default {
     setProductToCart(state, payload) {
       state.cart = payload
     },
+    setProductQuantity(state, { productId, quantity }) {
+      const product = state.cart.find(product => product.id === productId)
+      if (product) {
+        product.quantity = quantity
+      }
+    },
   },
   actions: {
     async getCartData({ commit, rootState }) {
@@ -61,6 +67,22 @@ export default {
           `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/carts/${payload}.json?auth=${rootState.auth.token}`,
         )
         await dispatch('getCartData')
+      } catch (err) {
+        console.log(err)
+      }
+    },
+
+    async updateProductQuantity(
+      { commit, rootState, dispatch },
+      { productId, quantity },
+    ) {
+      try {
+        await axios.patch(
+          `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/carts/${productId}.json?auth=${rootState.auth.token}`,
+          { quantity },
+        )
+        await dispatch('getCartData')
+        await commit('setProductQuantity', { productId, quantity })
       } catch (err) {
         console.log(err)
       }

@@ -186,6 +186,7 @@ const addToCartHandler = async () => {
       price: productDetail.value.price,
       size: productDetail.value.size,
       color: productDetail.value.color,
+      quantity: 1,
     })
     alert('Product added to cart successfully')
   } catch (error) {

@@ -26,7 +26,7 @@
                   />
                 </div>
                 <router-link
-                  :to="`/product/${cart.id}`"
+                  :to="`/product/${cart.productId}`"
                   class="col-md-8 d-flex flex-column justify-content-center text-dark"
                 >
                   <div
@@ -44,7 +44,7 @@
                   </div>
                 </router-link>
                 <div
-                  class="card-footer bg-transparent d-flex justify-content-between"
+                  class="card-footer bg-transparent d-flex justify-content-between py-3"
                 >
                   <button
                     class="btn btn-outline-danger"
@@ -54,13 +54,26 @@
                     Remove
                   </button>
                   <div class="d-flex justify-content-end btn-group w-25">
-                    <button class="btn btn-outline-secondary">-</button>
+                    <button
+                      class="btn btn-outline-secondary"
+                      @click="updateQuantity(cart.id, cart.quantity - 1)"
+                      :disabled="quantityLoading"
+                    >
+                      -
+                    </button>
                     <input
                       class="w-25 btn"
                       style="border: #6c757d 1px solid"
                       type="number"
+                      :value="cart.quantity"
                     />
-                    <button class="btn btn-outline-secondary">+</button>
+                    <button
+                      class="btn btn-outline-secondary"
+                      @click="updateQuantity(cart.id, cart.quantity + 1)"
+                      :disabled="quantityLoading"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               </div>
@@ -119,6 +132,7 @@ import { onMounted, ref } from 'vue'
 
 const cartData = ref({})
 const cartTotalPrice = ref(0)
+const quantityLoading = ref(false)
 
 onMounted(async () => {
   try {
@@ -131,8 +145,12 @@ onMounted(async () => {
 
 const getCartDataFromStore = () => {
   cartData.value = store.state.cart.cart
+  calculateCartTotal()
+}
+
+const calculateCartTotal = () => {
   cartTotalPrice.value = cartData.value.reduce(
-    (total, item) => total + Number(item.price),
+    (total, item) => total + Number(item.price) * item.quantity,
     0,
   )
 }
@@ -150,6 +168,22 @@ const deleteProductFromCartHandler = async id => {
     }
   } else {
     console.log('delete not run')
+  }
+}
+
+const updateQuantity = async (productId, newQuantity) => {
+  if (newQuantity < 1) return
+  quantityLoading.value = true
+  try {
+    await store.dispatch('cart/updateProductQuantity', {
+      productId,
+      quantity: newQuantity,
+    })
+  } catch (err) {
+    console.log(err)
+  } finally {
+    quantityLoading.value = false
+    getCartDataFromStore()
   }
 }
 </script>
