@@ -97,7 +97,12 @@
             </p>
           </li>
           <li class="list-group-item py-3">
-            <button class="btn btn-success w-100">Checkout</button>
+            <button
+              class="btn btn-success w-100"
+              :disabled="cartData.length === 0"
+            >
+              Checkout
+            </button>
           </li>
         </ul>
       </div>
