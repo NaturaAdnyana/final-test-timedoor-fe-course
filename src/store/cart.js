@@ -55,5 +55,16 @@ export default {
         console.log(err)
       }
     },
+
+    async deleteProductFromCart({ dispatch, rootState }, payload) {
+      try {
+        await axios.delete(
+          `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/carts/${payload}.json?auth=${rootState.auth.token}`,
+        )
+        await dispatch('getCartData')
+      } catch (err) {
+        console.log(err)
+      }
+    },
   },
 }

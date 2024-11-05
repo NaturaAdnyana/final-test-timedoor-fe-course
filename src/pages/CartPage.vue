@@ -41,10 +41,16 @@
                   </div>
                 </div>
                 <div
-                  class="card-footer bg-transparent d-flex justify-content-end"
+                  class="card-footer bg-transparent d-flex justify-content-between"
                 >
-                  <button class="btn btn-outline-danger">Remove</button>
-                  <!-- <div class="d-flex justify-content-end btn-group w-25">
+                  <button
+                    class="btn btn-outline-danger"
+                    @click="deleteProductFromCartHandler(cart.id)"
+                  >
+                    <i class="fa-solid fa-trash-can"></i>
+                    Remove
+                  </button>
+                  <div class="d-flex justify-content-end btn-group w-25">
                     <button class="btn btn-outline-secondary">-</button>
                     <input
                       class="w-25 btn"
@@ -52,7 +58,7 @@
                       type="number"
                     />
                     <button class="btn btn-outline-secondary">+</button>
-                  </div> -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -102,4 +108,20 @@ onMounted(async () => {
     console.error('Error fetching product data:', error)
   }
 })
+
+const deleteProductFromCartHandler = async id => {
+  const confirmDelete = confirm(
+    'Are you sure want to remove this product from cart?',
+  )
+  if (confirmDelete) {
+    try {
+      await store.dispatch('cart/deleteProductFromCart', id)
+      cartData.value = store.state.cart.cart
+    } catch (err) {
+      console.log(err)
+    }
+  } else {
+    console.log('delete not run')
+  }
+}
 </script>
