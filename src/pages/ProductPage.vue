@@ -180,6 +180,7 @@ const addToCartHandler = async () => {
       size: productDetail.value.size,
       color: productDetail.value.color,
     })
+    alert('Product added to cart successfully')
   } catch (error) {
     console.error('Error fetching product data:', error)
   }
