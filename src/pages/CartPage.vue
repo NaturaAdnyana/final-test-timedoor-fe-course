@@ -8,7 +8,7 @@
             <i class="fa-solid fa-location-dot me-2"></i>Shipping to
             <b>IKN</b>
           </li>
-          <li class="list-group-item p-4">
+          <li class="list-group-item p-4" v-if="cartData.length !== 0">
             <div
               class="card mb-3"
               v-for="(cart, index) in cartData"
@@ -63,6 +63,22 @@
               </div>
             </div>
           </li>
+          <li
+            class="list-group-item p-5 d-flex flex-column align-items-center"
+            v-else
+          >
+            <img
+              class="mb-5 rounded"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP8pht33JK6ovE6xqux5YQt3pCL4DV5JHLSg&s"
+            />
+            <h3>Your Cart is Empty</h3>
+            <p class="text-secondary">
+              Find your favorite items and add to cart before check out.
+            </p>
+            <router-link to="/products/" class="btn btn-success px-3"
+              >Find Products</router-link
+            >
+          </li>
         </ul>
       </div>
       <div class="col-lg-3">
@@ -99,15 +115,19 @@ const cartTotalPrice = ref(0)
 onMounted(async () => {
   try {
     await store.dispatch('cart/getCartData')
-    cartData.value = store.state.cart.cart
-    cartTotalPrice.value = cartData.value.reduce(
-      (total, item) => total + Number(item.price),
-      0,
-    )
+    getCartDataFromStore()
   } catch (error) {
     console.error('Error fetching product data:', error)
   }
 })
+
+const getCartDataFromStore = () => {
+  cartData.value = store.state.cart.cart
+  cartTotalPrice.value = cartData.value.reduce(
+    (total, item) => total + Number(item.price),
+    0,
+  )
+}
 
 const deleteProductFromCartHandler = async id => {
   const confirmDelete = confirm(
@@ -116,7 +136,7 @@ const deleteProductFromCartHandler = async id => {
   if (confirmDelete) {
     try {
       await store.dispatch('cart/deleteProductFromCart', id)
-      cartData.value = store.state.cart.cart
+      getCartDataFromStore()
     } catch (err) {
       console.log(err)
     }
