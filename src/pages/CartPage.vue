@@ -130,7 +130,7 @@
 
 <script setup>
 import { store } from '@/store'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, toRaw } from 'vue'
 
 const cartData = ref({})
 const cartTotalPrice = ref(0)
@@ -193,8 +193,9 @@ const updateQuantity = async (productId, newQuantity) => {
 }
 
 const checkoutHandler = async () => {
+  const rawCartData = toRaw(cartData.value)
   try {
-    await store.dispatch('order/addProductToOrder', cartData.value)
+    await store.dispatch('order/addProductToOrder', rawCartData)
   } catch (err) {
     console.log(err)
   }

@@ -12,7 +12,6 @@ export default {
   getters: {},
   mutations: {
     setProductToOrder(state, { newData, countData }) {
-      console.log('newData', newData)
       state.order = newData
       state.totalOrder = countData
     },
@@ -43,7 +42,7 @@ export default {
     },
 
     async addProductToOrder({ commit }, payload) {
-      const newData = [...payload]
+      const newData = payload
       const countData = newData.length
       try {
         commit('setProductToOrder', { newData, countData })
@@ -64,8 +63,18 @@ export default {
           `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/orders.json?auth=${rootState.auth.token}`,
           newData,
         )
+
+        const deleteRequests = payload.map(id =>
+          axios.delete(
+            `${import.meta.env.VITE_FIREBASE_DATABASE_URL}/carts/${id.id}.json?auth=${rootState.auth.token}`,
+          ),
+        )
+        await Promise.all(deleteRequests)
+
         commit('setOrderHistory', { id: data.name, ...newData })
+
         await dispatch('getOrderHistory')
+        await dispatch('cart/getCartData', null, { root: true })
       } catch (err) {
         console.log(err)
       }

@@ -233,7 +233,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { store } from '@/store'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, toRaw } from 'vue'
 
 const router = useRouter()
 
@@ -259,8 +259,9 @@ const getOrderDataFromStore = () => {
 }
 
 const checkoutHandler = async () => {
+  const rawOrderData = toRaw(orderData.value)
   try {
-    await store.dispatch('order/orderProduct', orderData.value)
+    await store.dispatch('order/orderProduct', rawOrderData)
     router.push('/')
   } catch (err) {
     console.log(err)
