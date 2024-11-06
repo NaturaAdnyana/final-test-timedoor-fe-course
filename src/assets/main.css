@@ -100,3 +100,10 @@ footer i {
 .text-badge-xxs {
   font-size: 8px;
 }
+
+.buy-again {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 14px;
+}
