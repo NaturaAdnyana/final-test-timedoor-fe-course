@@ -1,5 +1,5 @@
 <template>
-  <section class="container py-5 my-5">
+  <section class="container py-5 mt-5">
     <h1 class="fs-4">Cart</h1>
     <div class="row">
       <div class="col-lg-9">

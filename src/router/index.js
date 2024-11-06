@@ -8,6 +8,7 @@ import UserPage from '@/pages/UserPage.vue'
 import EditProduct from '@/components/user/EditProduct.vue'
 import AddProduct from '@/components/user/AddProduct.vue'
 import CartPage from '@/pages/CartPage.vue'
+import OrderPage from '@/pages/OrderPage.vue'
 
 import Cookies from 'js-cookie'
 import { store } from '@/store'
@@ -44,6 +45,14 @@ const router = createRouter({
       path: '/cart',
       name: 'cart',
       component: CartPage,
+      beforeEnter: (to, from, next) => {
+        checkAuth() ? next() : next({ name: 'login' })
+      },
+    },
+    {
+      path: '/order',
+      name: 'order',
+      component: OrderPage,
       beforeEnter: (to, from, next) => {
         checkAuth() ? next() : next({ name: 'login' })
       },

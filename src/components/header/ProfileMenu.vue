@@ -42,8 +42,7 @@
             ><i class="fa-solid fa-user me-3"></i>My Profile</router-link
           >
           <router-link to="/user/transaction-history" class="dropdown-item"
-            ><i class="fa-solid fa-clock-rotate-left me-3"></i>My
-            Order</router-link
+            ><i class="fa-solid fa-truck me-3"></i>My Order</router-link
           >
           <router-link to="/user/change-password" class="dropdown-item"
             ><i class="fa-solid fa-user-lock me-3"></i>Change

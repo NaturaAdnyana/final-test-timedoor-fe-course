@@ -1,6 +1,6 @@
 <template>
   <web-header></web-header>
-  <main>
+  <main class="bg-light">
     <RouterView :key="$route.fullPath" />
   </main>
 
